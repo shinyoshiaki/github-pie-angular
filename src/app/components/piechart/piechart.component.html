@@ -1,0 +1,20 @@
+<p *ngIf="search && loading">loading</p>
+<div *ngIf="data">
+  <svg attr.width="{{ width }}" attr.height="{{ height }}">
+    <g attr.transform="{{ gTransform }}">
+      <path
+        *ngFor="let d of pie(data)"
+        attr.d="{{ arc(d) }}"
+        attr.fill="{{ colors(data)(d.data.type) }}"
+      />
+      <g
+        *ngFor="let d of pie(data)"
+        attr.transform="{{ textTransform(d) }}"
+        attr.by="5"
+        attr.textAnchor="middle"
+      >
+        <text style="font-size:15">{{ d.data.type }}</text>
+      </g>
+    </g>
+  </svg>
+</div>
