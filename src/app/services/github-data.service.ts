@@ -8,17 +8,30 @@ export interface Result {
   type: string;
   count: number;
 }
+
+interface DoneAction {
+  state: "done";
+  payload: Result[];
+}
+
+interface LoadingAction {
+  state: "loading";
+  payload: undefined;
+}
+
+type Actions = DoneAction | LoadingAction;
+
 @Injectable({
   providedIn: "root"
 })
 export class GithubDataService {
-  public subject = new Subject<{ state: "done" | "loading"; payload?: any }>();
+  public subject = new Subject<Actions>();
   public state = this.subject.asObservable();
 
   constructor() {}
 
   async getPieGraphData(user: string) {
-    this.subject.next({ state: "loading" });
+    this.subject.next({ state: "loading", payload: undefined });
 
     let ress: any[] = [];
     for (let i = 0; ; i++) {
