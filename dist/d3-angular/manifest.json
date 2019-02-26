@@ -1,6 +1,6 @@
 {
-  "name": "d3-angular",
-  "short_name": "d3-angular",
+  "name": "github-pie-angular",
+  "short_name": "github-pie-angular",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
